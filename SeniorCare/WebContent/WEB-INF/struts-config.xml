@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="loginActionForm" type="com.yihong.seniorcare.actionforms.LoginActionForm" />
+		<form-bean name="changePasswordActionForm" type="com.yihong.seniorcare.actionforms.ChangePasswordActionForm" />
+		<form-bean name="changeCPUserPasswordActionForm" type="com.yihong.seniorcare.actionforms.ChangeCPUserPasswordActionForm"/>
+		<form-bean name="userListActionForm" type="com.yihong.seniorcare.actionforms.UserListActionForm" />
+		<form-bean name="editUserActionForm" type="com.yihong.seniorcare.actionforms.EditUserActionForm" />
+		<form-bean name="newUserActionForm" type="com.yihong.seniorcare.actionforms.NewUserActionForm" />
+		<form-bean name="menuActionForm" type="com.yihong.seniorcare.actionforms.MenuActionForm" />
+	</form-beans>
+	<global-forwards>
+		<forward name="login" path="/login.jsp" />
+		<forward name="main" path="/main/main.jsp" redirect="false" />
+		<forward name="logoff" path="/login.do" redirect="true" />
+    	<forward name="inactv_session" path="/login.do" redirect="false"></forward>
+	</global-forwards>
+	<action-mappings>
+		<action input="/login.jsp" name="loginActionForm" path="/login" scope="request" type="com.yihong.seniorcare.action.LoginAction">
+			<forward name="success" path="/main.do" />
+			<forward name="failure" path="/login.jsp" />
+			<forward name="changePassword" path="/changePassword.do" />
+		</action>
+		<action input="/changePassword.do"	name="changePasswordActionForm" path="/changePassword" scope="request" type="com.yihong.seniorcare.action.ChangePasswordAction">
+			<forward name="success" path="/userList.do" />
+			<forward name="failure" path="/changePassword.jsp" redirect="false"/>
+		</action>
+		<action input="/main.do" path="/main" scope="request" type="com.yihong.seniorcare.action.MainAction">
+			<forward name="changeCPUserPassword" path="/changeCPUserPassword.do" redirect="false" />
+			<forward name="userList" path="/userList.do" redirect="false" />
+			<forward name="permissionGroupList" path="/permissionGroupList.do" redirect="false" />
+			<forward name="participantList" path="/participantList.do" redirect="false" />
+			<forward name="timers" path="/timers.do" redirect="false" />
+			<forward name="routing" path="/routing.do" redirect="false" />
+		</action>
+		<action input="/changeCPUserPassword.do" name="changeCPUserPasswordActionForm" path="/changeCPUserPassword" scope="request" type="com.yihong.seniorcare.action.ChangeCPUserPasswordAction">
+			<forward name="changeCPUserPassword" path="/cpUserPassword/changeCPUserPassword.jsp" redirect="false" />
+			<forward name="failure" path="/cpUserPassword/changeCPUserPassword.jsp" redirect="false" />
+			<forward name="success" path="/cpUserPassword/changeCPUserPassword.jsp" />
+		</action>
+		<action input="/userList.do" name="userListActionForm" path="/userList" scope="request" type="com.yihong.seniorcare.action.UserListAction">
+			<forward name="userList" path="/user/userList.jsp" redirect="false"/>
+			<forward name="failure" path="/user/userList.jsp" redirect="false" />
+			<forward name="newUser" path="/newUser.do" redirect="false" />
+		</action>
+		<action input="/editUser.do" name="editUserActionForm" path="/editUser" scope="request" type="com.yihong.seniorcare.action.EditUserAction">
+			<forward name="failure" path="/user/editUser.jsp" redirect="false" />
+			<forward name="delete" path="/userList.do" redirect="false" />
+			<forward name="changePassword" path="/changePassword.do" redirect="true" />
+		</action>
+		<action input="/newUser.do" name="newUserActionForm" path="/newUser" scope="request" type="com.yihong.seniorcare.action.NewUserAction">
+			<forward name="failure" path="/user/newUser.jsp"/>
+		</action>
+		<action name="menuActionForm" path="/menu" />
+	</action-mappings>
+	<message-resources parameter="ApplicationResources" null="false" />
+</struts-config>

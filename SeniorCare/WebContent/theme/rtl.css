@@ -1,0 +1,11 @@
+body {
+	direction: rtl;
+}
+
+.RIGHT {
+	text-align: left;
+}
+
+.LEFT {
+	text-align: right;
+}

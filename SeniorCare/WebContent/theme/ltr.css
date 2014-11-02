@@ -1,0 +1,15 @@
+body {
+	direction: ltr;
+}
+
+.RIGHT {
+	text-align: right;
+}
+
+.LEFT {
+	text-align: left;
+}
+
+.CENTER {
+	text-align: center;
+}
